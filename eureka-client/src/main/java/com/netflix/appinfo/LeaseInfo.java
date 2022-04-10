@@ -41,13 +41,21 @@ public class LeaseInfo {
     public static final int DEFAULT_LEASE_DURATION = 90;
 
     // Client settings
+    // 服务续约间隔，表示客户端每隔多少秒向服务端发送心跳包，默认30s
+    // eureka.instance.lease-renewal-interval-in-seconds
     private int renewalIntervalInSecs = DEFAULT_LEASE_RENEWAL_INTERVAL;
+    // 存活时间，表示服务端如果经过durationInSecs秒后还没收到我的心跳包，就可以把该客户端当成过期的服务，从实例表中剔除掉，默认90s
+    // eureka.instance.lease-expiration-duration-in-seconds
     private int durationInSecs = DEFAULT_LEASE_DURATION;
 
     // Server populated
+    // 客户端注册到服务端的时间
     private long registrationTimestamp;
+    // 客户端上一次续约的时间或者上一次收到该客户端心跳包的时间
     private long lastRenewalTimestamp;
+    // 表示EurekaServer剔除该服务的时间
     private long evictionTimestamp;
+    // 表示服务上线的时间
     private long serviceUpTimestamp;
 
     public static final class Builder {

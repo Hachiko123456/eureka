@@ -89,12 +89,15 @@ public class InstanceInfo {
     public static final int DEFAULT_COUNTRY_ID = 1; // US
 
     // The (fixed) instanceId for this instanceInfo. This should be unique within the scope of the appName.
+    // 服务的唯一标识
     private volatile String instanceId;
 
+    // 服务名称
     private volatile String appName;
     @Auto
     private volatile String appGroupName;
 
+    // 服务的ip地址
     private volatile String ipAddr;
 
     private static final String SID_DEFAULT = "na";
@@ -140,11 +143,15 @@ public class InstanceInfo {
     private volatile InstanceStatus overriddenStatus = InstanceStatus.UNKNOWN;
     @XStreamOmitField
     private volatile boolean isInstanceInfoDirty = false;
+    // 服务的续约信息
     private volatile LeaseInfo leaseInfo;
     @Auto
     private volatile Boolean isCoordinatingDiscoveryServer = Boolean.FALSE;
     @XStreamAlias("metadata")
     private volatile Map<String, String> metadata;
+    /**
+     * 上次的更新时间
+     */
     @Auto
     private volatile Long lastUpdatedTimestamp;
     @Auto
